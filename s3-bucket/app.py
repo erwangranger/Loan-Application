@@ -173,7 +173,7 @@ with st.expander("✨ Create an IAM user  ("+rw+")"):
         ```
         """
         )
-    
+
 with st.expander("✨ Create an IAM user  ("+ro+")"):
     st.write(
         """
@@ -194,7 +194,7 @@ with st.expander("✨ Attach the policies to the users"):
                 --query 'Policies[?PolicyName==`"""+rw+"""`].Arn' \\
                 --output text)
             echo ${RW_POL}
-            
+
             aws iam attach-user-policy \\
                 --policy-arn  ${RW_POL} \\
                 --user-name """+rw+"""
@@ -205,7 +205,7 @@ with st.expander("✨ Attach the policies to the users"):
                 --query 'Policies[?PolicyName==`"""+ro+"""`].Arn' \\
                 --output text)
             echo ${RO_POL}
-            
+
             aws iam attach-user-policy \\
                 --policy-arn  ${RO_POL} \\
                 --user-name """+ro+"""
@@ -231,20 +231,3 @@ with st.expander("✨ Generate the IAM credentials matching these users"):
         """
         )
 
-with st.expander("✨ Generate the IAM credentials matching these users"):
-    st.write(
-        """
-        * rw:
-            ```bash
-            aws iam create-access-key \\
-                --user-name  """+rw+""" \\
-                | tee ./"""+rw+""".keys.txt
-            ```
-        * ro:
-            ```bash
-            aws iam create-access-key \\
-                --user-name  """+ro+""" \\
-                | tee ./"""+ro+""".keys.txt
-            ```
-        """
-        )
